@@ -9,23 +9,23 @@ public static class TetrominoData
         Color.Cyan, Color.Gold, Color.MediumPurple, Color.LimeGreen, Color.IndianRed, Color.DodgerBlue, Color.Orange,
     };
 
-    private static readonly int[][][] ShapeData =
-    {
-        new[] { new[] { 0, 1, 1, 1, 2, 1, 3, 1 }, new[] { 2, 0, 2, 1, 2, 2, 2, 3 }, new[] { 0, 2, 1, 2, 2, 2, 3, 2 }, new[] { 1, 0, 1, 1, 1, 2, 1, 3 } },
-        new[] { new[] { 1, 0, 2, 0, 1, 1, 2, 1 }, new[] { 1, 0, 2, 0, 1, 1, 2, 1 }, new[] { 1, 0, 2, 0, 1, 1, 2, 1 }, new[] { 1, 0, 2, 0, 1, 1, 2, 1 } },
-        new[] { new[] { 1, 0, 0, 1, 1, 1, 2, 1 }, new[] { 1, 0, 1, 1, 2, 1, 1, 2 }, new[] { 0, 1, 1, 1, 2, 1, 1, 2 }, new[] { 1, 0, 0, 1, 1, 1, 1, 2 } },
-        new[] { new[] { 1, 0, 2, 0, 0, 1, 1, 1 }, new[] { 1, 0, 1, 1, 2, 1, 2, 2 }, new[] { 1, 1, 2, 1, 0, 2, 1, 2 }, new[] { 0, 0, 0, 1, 1, 1, 1, 2 } },
-        new[] { new[] { 0, 0, 1, 0, 1, 1, 2, 1 }, new[] { 2, 0, 1, 1, 2, 1, 1, 2 }, new[] { 0, 1, 1, 1, 1, 2, 2, 2 }, new[] { 1, 0, 0, 1, 1, 1, 0, 2 } },
-        new[] { new[] { 0, 0, 0, 1, 1, 1, 2, 1 }, new[] { 1, 0, 2, 0, 1, 1, 1, 2 }, new[] { 0, 1, 1, 1, 2, 1, 2, 2 }, new[] { 1, 0, 1, 1, 0, 2, 1, 2 } },
-        new[] { new[] { 2, 0, 0, 1, 1, 1, 2, 1 }, new[] { 1, 0, 1, 1, 1, 2, 2, 2 }, new[] { 0, 1, 1, 1, 2, 1, 0, 2 }, new[] { 0, 0, 1, 0, 1, 1, 1, 2 } },
-    };
+    private static readonly Point[][][] ShapeData =
+    [
+        // I
+        [[new(0,1), new(1,1), new(2,1), new(3,1)], [new(2,0), new(2,1), new(2,2), new(2,3)], [new(0,2), new(1,2), new(2,2), new(3,2)], [new(1,0), new(1,1), new(1,2), new(1,3)]],
+        // O
+        [[new(1,0), new(2,0), new(1,1), new(2,1)], [new(1,0), new(2,0), new(1,1), new(2,1)], [new(1,0), new(2,0), new(1,1), new(2,1)], [new(1,0), new(2,0), new(1,1), new(2,1)]],
+        // T
+        [[new(1,0), new(0,1), new(1,1), new(2,1)], [new(1,0), new(1,1), new(2,1), new(1,2)], [new(0,1), new(1,1), new(2,1), new(1,2)], [new(1,0), new(0,1), new(1,1), new(1,2)]],
+        // S
+        [[new(1,0), new(2,0), new(0,1), new(1,1)], [new(1,0), new(1,1), new(2,1), new(2,2)], [new(1,1), new(2,1), new(0,2), new(1,2)], [new(0,0), new(0,1), new(1,1), new(1,2)]],
+        // Z
+        [[new(0,0), new(1,0), new(1,1), new(2,1)], [new(2,0), new(1,1), new(2,1), new(1,2)], [new(0,1), new(1,1), new(1,2), new(2,2)], [new(1,0), new(0,1), new(1,1), new(0,2)]],
+        // J
+        [[new(0,0), new(0,1), new(1,1), new(2,1)], [new(1,0), new(2,0), new(1,1), new(1,2)], [new(0,1), new(1,1), new(2,1), new(2,2)], [new(1,0), new(1,1), new(0,2), new(1,2)]],
+        // L
+        [[new(2,0), new(0,1), new(1,1), new(2,1)], [new(1,0), new(1,1), new(1,2), new(2,2)], [new(0,1), new(1,1), new(2,1), new(0,2)], [new(0,0), new(1,0), new(1,1), new(1,2)]],
+    ];
 
-    public static IEnumerable<Point> Cells(int type, int rotation)
-    {
-        var data = ShapeData[type][rotation];
-        for (var i = 0; i < data.Length; i += 2)
-        {
-            yield return new Point(data[i], data[i + 1]);
-        }
-    }
+    public static Point[] Cells(int type, int rotation) => ShapeData[type][rotation];
 }

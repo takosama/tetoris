@@ -33,7 +33,7 @@ public static class PieceSpecials
             state.CurrentType = temp;
             state.CurrentRotation = 0;
             state.CurrentX = 3;
-            state.CurrentY = -2;
+            state.CurrentY = -1;
             if (Collision.Hits(state, state.CurrentType, state.CurrentRotation, state.CurrentX, state.CurrentY))
             {
                 state.GameOver = true;

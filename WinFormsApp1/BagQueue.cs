@@ -12,20 +12,8 @@ public static class BagQueue
 
     public static void Fill(GameState state, Random rng)
     {
-        var bag = new List<int>();
-        for (var i = 0; i < 7; i++)
-        {
-            bag.Add(i);
-        }
-
-        for (var i = bag.Count - 1; i > 0; i--)
-        {
-            var j = rng.Next(i + 1);
-            var temp = bag[i];
-            bag[i] = bag[j];
-            bag[j] = temp;
-        }
-
+        var bag = new int[] { 0, 1, 2, 3, 4, 5, 6 };
+        rng.Shuffle(bag);
         foreach (var type in bag)
         {
             state.NextQueue.Enqueue(type);

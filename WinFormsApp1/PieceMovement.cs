@@ -18,11 +18,13 @@ public static class PieceMovement
         return true;
     }
 
+    private static readonly Point[] KickTable =
+        [new(0, 0), new(1, 0), new(-1, 0), new(2, 0), new(-2, 0), new(0, -1)];
+
     public static void TryRotate(GameState state, int direction)
     {
         var newRotation = (state.CurrentRotation + direction + 4) % 4;
-        var kicks = new[] { new Point(0, 0), new Point(1, 0), new Point(-1, 0), new Point(2, 0), new Point(-2, 0), new Point(0, -1) };
-        foreach (var kick in kicks)
+        foreach (var kick in KickTable)
         {
             if (!Collision.Hits(state, state.CurrentType, newRotation, state.CurrentX + kick.X, state.CurrentY + kick.Y))
             {

@@ -9,14 +9,19 @@ public static class SidePanelRenderer
         using var textBrush = new SolidBrush(Color.Gainsboro);
         using var titleFont = new Font(SystemFonts.MessageBoxFont.FontFamily, 12, FontStyle.Bold);
         using var valueFont = new Font(SystemFonts.MessageBoxFont.FontFamily, 11, FontStyle.Regular);
-        g.DrawString("Score", titleFont, textBrush, x, y);
-        g.DrawString(state.Score.ToString(), valueFont, textBrush, x, y + 24);
-        g.DrawString("Lines", titleFont, textBrush, x, y + 56);
-        g.DrawString(state.TotalLines.ToString(), valueFont, textBrush, x, y + 80);
-        g.DrawString("Level", titleFont, textBrush, x, y + 112);
-        g.DrawString(state.Level.ToString(), valueFont, textBrush, x, y + 136);
+
+        void Stat(string label, string value, int oy)
+        {
+            g.DrawString(label, titleFont, textBrush, x, y + oy);
+            g.DrawString(value, valueFont, textBrush, x, y + oy + 24);
+        }
+
+        Stat("Score", state.Score.ToString(), 0);
+        Stat("Lines", state.TotalLines.ToString(), 56);
+        Stat("Level", state.Level.ToString(), 112);
+
         g.DrawString("Next", titleFont, textBrush, x, y + 176);
-        MiniPieceRenderer.Draw(g, x, y + 204, NextPreview.Peek(state));
+        MiniPieceRenderer.Draw(g, x, y + 204, state.NextQueue.Peek());
         g.DrawString("Hold", titleFont, textBrush, x, y + 300);
         if (state.HoldType.HasValue)
         {
